@@ -6,7 +6,7 @@
             <h1>微电影管理系统</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 标签管理</a></li>
-                <li class="active">添加标签</li>
+                <li class="active">修改标签</li>
             </ol>
         </section>
         <section class="content" id="showcontent">
@@ -15,24 +15,26 @@
                     {% for msg in get_flashed_messages(category_filter=['ok']) %}
                     <div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> 修改成功</h4>
                         {{ msg }}
                     </div>
                     {% endfor %}
                     {% for msg in get_flashed_messages(category_filter=['err']) %}
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-ban"></i> 修改失败</h4>
                         {{ msg }}
                     </div>
                     {% endfor %}
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">添加标签</h3>
+                            <h3 class="box-title">修改标签</h3>
                         </div>
-                        <form  method="post">
+                        <form  method="post" action="{{url_for('admin.tag_edit',id=tag.id)}}">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label >{{form.name.label}}</label>
-                                    {{form.name}}
+                                    {{form.name(value=tag.name)}}
                                     {% for err in form.name.errors %}
                                     <div class="col-md-12" id="input_pwd">
                                         <font style="color:red">{{ err }}</font>

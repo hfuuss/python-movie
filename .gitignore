@@ -1,3 +1,8 @@
 .idea/*
 *.pyc
 
+
+.git/*
+*
+*.pyc
+
